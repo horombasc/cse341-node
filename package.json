@@ -1,0 +1,22 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "My Web Service Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/horombasc/cse341-node.git"
+  },
+  "author": "Collin S. Horomba",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/horombasc/cse341-node/issues"
+  },
+  "homepage": "https://github.com/horombasc/cse341-node#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
