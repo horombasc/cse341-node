@@ -1,12 +1,22 @@
-const express = require('express');
+const express = require("express");
+const { connectToDb } = require("./db/connection");
+const contactsRoutes = require("./routes/contacts");
+
 const app = express();
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
-app.use('/', require('./routes'));
+app.use("/contacts", contactsRoutes);
 
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+connectToDb()
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
+  })
+  .catch((err) => console.error(err));
+
+
+
 
 
 
