@@ -1,4 +1,5 @@
 const swaggerUi = require("swagger-ui-express");
+
 const swaggerDocument = {
   openapi: "3.0.0",
   info: {
@@ -7,7 +8,7 @@ const swaggerDocument = {
     description: "API to manage contacts",
   },
   servers: [
-    { url: "https://cse341-node-287t.onrender.com" } 
+    { url: "https://cse341-node-287t.onrender.com" } // your Render URL
   ],
   paths: {
     "/contacts": {
@@ -57,9 +58,7 @@ const swaggerDocument = {
             }
           }
         },
-        responses: {
-          "201": { description: "Contact created" }
-        }
+        responses: { "201": { description: "Contact created" } }
       }
     },
     "/contacts/{id}": {
@@ -116,6 +115,7 @@ const swaggerDocument = {
 };
 
 module.exports = { swaggerUi, swaggerDocument };
+
 
 
 
