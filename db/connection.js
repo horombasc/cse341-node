@@ -1,3 +1,4 @@
+// db/connection.js
 const { MongoClient } = require("mongodb");
 require("dotenv").config();
 
@@ -13,4 +14,5 @@ const connectToDb = async () => {
 const getDb = () => db;
 
 module.exports = { connectToDb, getDb };
+
 

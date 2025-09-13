@@ -1,3 +1,4 @@
+// routes/contacts.js
 const express = require("express");
 const { ObjectId } = require("mongodb");
 const { getDb } = require("../db/connection");
@@ -31,7 +32,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// POST create new contact
+// POST - create a new contact
 router.post("/", async (req, res) => {
   try {
     const db = getDb();
@@ -46,16 +47,16 @@ router.post("/", async (req, res) => {
       surname,
       email,
       favoriteColor,
-      birthday,
+      birthday
     });
 
-    res.status(201).json({ id: result.insertedId });
+    res.status(201).json({ insertedId: result.insertedId });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-// PUT update a contact by ID
+// PUT - update a contact
 router.put("/:id", async (req, res) => {
   try {
     const db = getDb();
@@ -68,13 +69,13 @@ router.put("/:id", async (req, res) => {
 
     if (result.matchedCount === 0) return res.status(404).json({ message: "Contact not found" });
 
-    res.sendStatus(204);
+    res.json({ message: "Contact updated successfully" });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-// DELETE a contact by ID
+// DELETE - delete a contact
 router.delete("/:id", async (req, res) => {
   try {
     const db = getDb();
@@ -82,13 +83,14 @@ router.delete("/:id", async (req, res) => {
 
     if (result.deletedCount === 0) return res.status(404).json({ message: "Contact not found" });
 
-    res.sendStatus(204);
+    res.json({ message: "Contact deleted successfully" });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
 module.exports = router;
+
 
 
 

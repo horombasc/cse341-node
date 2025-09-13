@@ -1,25 +1,41 @@
-// swagger.js
-module.exports = {
-  openapi: "3.0.3",
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = {
+  openapi: "3.0.0",
   info: {
     title: "Contacts API",
     version: "1.0.0",
-    description: "API for managing contacts",
+    description: "API to manage contacts",
   },
   servers: [
-    {
-      url: "https://cse341-contacts.onrender.com", // use your Render URL after deployment
-    },
+    { url: "https://cse341-node-287t.onrender.com" } 
   ],
   paths: {
     "/contacts": {
       get: {
         summary: "Get all contacts",
         responses: {
-          200: {
-            description: "List of all contacts",
-          },
-        },
+          "200": {
+            description: "List of contacts",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "array",
+                  items: {
+                    type: "object",
+                    properties: {
+                      _id: { type: "string" },
+                      name: { type: "string" },
+                      surname: { type: "string" },
+                      email: { type: "string" },
+                      favoriteColor: { type: "string" },
+                      birthday: { type: "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       post: {
         summary: "Create a new contact",
@@ -29,39 +45,38 @@ module.exports = {
             "application/json": {
               schema: {
                 type: "object",
+                required: ["name", "surname", "email", "favoriteColor", "birthday"],
                 properties: {
                   name: { type: "string" },
                   surname: { type: "string" },
                   email: { type: "string" },
                   favoriteColor: { type: "string" },
-                  birthday: { type: "string" },
-                },
-                required: ["name", "surname", "email", "favoriteColor", "birthday"],
-              },
-            },
-          },
+                  birthday: { type: "string" }
+                }
+              }
+            }
+          }
         },
         responses: {
-          201: { description: "Contact created" },
-          400: { description: "Missing fields" },
-        },
-      },
+          "201": { description: "Contact created" }
+        }
+      }
     },
     "/contacts/{id}": {
       get: {
-        summary: "Get a contact by ID",
+        summary: "Get contact by ID",
         parameters: [
-          { name: "id", in: "path", required: true, schema: { type: "string" } },
+          { name: "id", in: "path", required: true, schema: { type: "string" } }
         ],
         responses: {
-          200: { description: "Contact found" },
-          404: { description: "Contact not found" },
-        },
+          "200": { description: "Contact found" },
+          "404": { description: "Contact not found" }
+        }
       },
       put: {
-        summary: "Update a contact by ID",
+        summary: "Update contact by ID",
         parameters: [
-          { name: "id", in: "path", required: true, schema: { type: "string" } },
+          { name: "id", in: "path", required: true, schema: { type: "string" } }
         ],
         requestBody: {
           required: true,
@@ -69,34 +84,40 @@ module.exports = {
             "application/json": {
               schema: {
                 type: "object",
+                required: ["name", "surname", "email", "favoriteColor", "birthday"],
                 properties: {
                   name: { type: "string" },
                   surname: { type: "string" },
                   email: { type: "string" },
                   favoriteColor: { type: "string" },
-                  birthday: { type: "string" },
-                },
-                required: ["name", "surname", "email", "favoriteColor", "birthday"],
-              },
-            },
-          },
+                  birthday: { type: "string" }
+                }
+              }
+            }
+          }
         },
         responses: {
-          204: { description: "Contact updated" },
-          404: { description: "Contact not found" },
-        },
+          "200": { description: "Contact updated" },
+          "404": { description: "Contact not found" }
+        }
       },
       delete: {
-        summary: "Delete a contact by ID",
+        summary: "Delete contact by ID",
         parameters: [
-          { name: "id", in: "path", required: true, schema: { type: "string" } },
+          { name: "id", in: "path", required: true, schema: { type: "string" } }
         ],
         responses: {
-          204: { description: "Contact deleted" },
-          404: { description: "Contact not found" },
-        },
-      },
-    },
-  },
+          "200": { description: "Contact deleted" },
+          "404": { description: "Contact not found" }
+        }
+      }
+    }
+  }
 };
+
+module.exports = { swaggerUi, swaggerDocument };
+
+
+
+
 
