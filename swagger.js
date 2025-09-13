@@ -8,7 +8,7 @@ const swaggerDocument = {
     description: "API to manage contacts",
   },
   servers: [
-    { url: "https://cse341-node-287t.onrender.com" } // your Render URL
+    { url: "https://cse341-node-287t.onrender.com" } 
   ],
   paths: {
     "/contacts": {
