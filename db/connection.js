@@ -13,3 +13,4 @@ const connectToDb = async () => {
 const getDb = () => db;
 
 module.exports = { connectToDb, getDb };
+

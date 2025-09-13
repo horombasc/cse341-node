@@ -4,6 +4,9 @@ const { connectToDb } = require("./db/connection");
 const contactsRoutes = require("./routes/contacts");
 require("dotenv").config();
 
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger");
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -18,6 +21,9 @@ app.get("/", (req, res) => {
 // Contacts routes
 app.use("/contacts", contactsRoutes);
 
+// Swagger API docs route
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 // Connect to MongoDB and start server
 connectToDb()
   .then(() => {
@@ -26,6 +32,8 @@ connectToDb()
     });
   })
   .catch((err) => console.error(err));
+
+
 
 
 
